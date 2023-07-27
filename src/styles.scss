@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+/* TODO: Move the component specific styles to component */
+body{
+    background-color: #d7d8d8 !important;
+}
+.button, .button:focus, .button:hover, button:focus, button:hover {
+    background-color: #004a34 !important;
+    outline: 0;
+    color: #fff;
+}
+.login-panel {
+    background-color: #fff4f4;
+    border-radius: 20px;
+    border-style: groove;
+}
+.page-headline{
+    color: #e9c465;
+}
+.login {
+    margin: 30px 80px;
+    border: 1px solid #d6d3d3;
+    padding: 50px 30px;
+    border-radius: 20px;
+}
+.logo{
+    font-size: 2rem;
+    color: #e3ee50;
+    margin: 50px;
+    text-align: center;
+    color: #86724e;
+    font-style: italic;
+    line-height: 1.3;
+    text-shadow: 0 1px 0 rgba(0,0,0,.5);
+}
+.forgot-password, .create-account{
+    color: #736243;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none
+}
