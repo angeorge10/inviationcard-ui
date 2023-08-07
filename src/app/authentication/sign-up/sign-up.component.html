@@ -1,76 +1,115 @@
 <div class="container">
-    <div class="login-panel justify-content-md-center row mt-5">
-        <div class="col-6">
-            <section class="logo">
-                Invitation Card Design
-            </section>
-            <section class="text-center">
-                <img class="animation-gif" alt="Gift Card Änimation" data-src="assets/inytes-animation.gif" src="assets/inytes-animation.gif">
-            </section> 
+  <div class="login-panel justify-content-md-center row mt-5">
+    <div class="col-6">
+      <section class="logo">
+        Invitation Card Design
+      </section>
+      <section class="text-center">
+        <img class="animation-gif" alt="Gift Card Änimation" data-src="assets/inytes-animation.gif"
+          src="assets/inytes-animation.gif">
+      </section>
+    </div>
+    <div class="col-6">
+      <section class="login">
+        <div class="page-headline">
+          <h2>Sign Up</h2>
         </div>
-        <div class="col-6">
-            <section class="login">
-                <div class="page-headline">
-                   <h2>Sign Up</h2> 
-                </div>
-                <form class="row g-3">
-                    <div class="col-md-6">
-                        <label for="" class="form-label">First Name</label>
-                        <input type="First Name" class="form-control" id="">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="" class="form-label">Last Name</label>
-                        <input type="Last Name" class="form-control" id="">
-                      </div>
-                    <div class="col-12">
-                      <label for="" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="">
-                    </div>
-                    <div class="col-12">
-                      <label for="" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="">
-                    </div>
-                    <div class="col-12">
-                      <label for="inputAddress" class="form-label">Address</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="col-12">
-                      <label for="inputAddress2" class="form-label">Address 2</label>
-                      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputCity" class="form-label">City</label>
-                      <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputState" class="form-label">State</label>
-                      <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputZip" class="form-label">Zip</label>
-                      <input type="text" class="form-control" id="inputZip">
-                    </div>
-                    <div class="col-12">
+        <form class="row g-3" [formGroup]="signUpForm">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label required">First Name</label>
+            <input type="First Name"
+              [ngClass]="{ 'is-invalid': signUpFormControls['firstName'].touched && signUpFormControls['firstName'].errors }"
+              formControlName="firstName" class="form-control" id="firstName">
+            <div *ngIf="signUpFormControls['firstName'].touched && signUpFormControls['firstName'].errors"
+              class="invalid-feedback">
+              <div *ngIf="signUpFormControls['firstName'].errors['required']">
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="lastName" class="form-label required">Last Name</label>
+            <input type="Last Name"
+              [ngClass]="{ 'is-invalid': signUpFormControls['lastName'].touched && signUpFormControls['lastName'].errors }"
+              formControlName="lastName" class="form-control" id="lastName">
+            <div *ngIf="signUpFormControls['lastName'].touched && signUpFormControls['lastName'].errors"
+              class="invalid-feedback">
+              <div *ngIf="signUpFormControls['lastName'].errors['required']">
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="email" class="form-label- required">Email</label>
+            <input type="email"
+              [ngClass]="{ 'is-invalid': signUpFormControls['email'].touched && signUpFormControls['email'].errors }"
+              formControlName="email" class="form-control" id="email">
+            <div *ngIf="signUpFormControls['email'].touched && signUpFormControls['email'].errors"
+              class="invalid-feedback">
+              <div *ngIf="signUpFormControls['email'].errors['required']">
+                Required
+              </div>
+              <div *ngIf="signUpFormControls['email'].errors['email']">
+                Provide an email address
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="password" class="form-label required">Password</label>
+            <input type="password"
+              [ngClass]="{ 'is-invalid': signUpFormControls['password'].touched && signUpFormControls['password'].errors }"
+              formControlName="password" class="form-control" id="password">
+            <div *ngIf="signUpFormControls['password'].touched && signUpFormControls['password'].errors"
+              class="invalid-feedback">
+              <div *ngIf="signUpFormControls['password'].errors['required']">
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" formControlName="address" id="address">
+          </div>
+          <div class="col-12">
+            <label for="address2" class="form-label">Address 2</label>
+            <input type="text" class="form-control" formControlName="address2" id="address2">
+          </div>
+          <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" formControlName="city" class="form-control" id="city">
+          </div>
+          <div class="col-md-6">
+            <label for="state" class="form-label">State</label>
+            <select id="state" formControlName="state" class="form-select">
+              <option selected>Choose...</option>
+              <option *ngFor="let state of states" [ngValue]="state">
+                {{ state }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="zip" class="form-label">Zip</label>
+            <input type="number" formControlName="zip" class="form-control" id="zip">
+          </div>
+          <!-- <div class="col-12">
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck">
                         <label class="form-check-label" for="gridCheck">
                             Remember password
                         </label>
                       </div>
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button type="submit" class="btn btn-primary button">Sign in</button>
-                    </div>
-                  </form>                    
-                    <div class="row">
-                        <div class="column small-12 text-center m-t-10">
-                            <a routerLink="/login" class="create-account">Back to Login</a>
-                        </div>
-                    </div>
-            </section>
+                    </div> -->
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" [disabled]="!signUpForm.valid" (click)="onSignUp()"
+              class="btn btn-primary button">Sign in</button>
+          </div>
+        </form>
+        <div class="row">
+          <div class="column small-12 text-center m-t-10">
+            <a routerLink="/login" class="create-account">Back to Login</a>
+          </div>
         </div>
+      </section>
     </div>
+  </div>
 </div>

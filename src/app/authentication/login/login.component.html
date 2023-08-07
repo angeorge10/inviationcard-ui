@@ -5,26 +5,40 @@
                 Invitation Card Design
             </section>
             <section class="text-center">
-                <img class="animation-gif" alt="Gift Card Änimation" data-src="assets/inytes-animation.gif" src="assets/inytes-animation.gif">
-            </section> 
+                <img class="animation-gif" alt="Gift Card Änimation" data-src="assets/inytes-animation.gif"
+                    src="assets/inytes-animation.gif">
+            </section>
         </div>
         <div class="col-6">
             <section class="login">
                 <div class="page-headline">
-                   <h2>Login</h2> 
+                    <h2>Login</h2>
                 </div>
-                <form>
+                <form [formGroup]="loginForm">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="email" class="form-label required">Email</label>
+                        <input type="email" class="form-control"
+                            [ngClass]="{ 'is-invalid': loginFormControls['email'].touched && loginFormControls['email'].errors }"
+                            id="email" formControlName="email" aria-describedby="emailHelp">
+                        <div *ngIf="loginFormControls['email'].touched && loginFormControls['email'].errors" class="invalid-feedback">
+                            <div *ngIf="loginFormControls['email'].errors['required']">
+                                Required
+                            </div>
+                            <div *ngIf="loginFormControls['email'].errors['email']">
+                                Provide an email address
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember password</label>
+                        <label for="password" class="form-label required">Password</label>
+                        <input type="password" 
+                            [ngClass]="{ 'is-invalid': loginFormControls['password'].touched && loginFormControls['password'].errors }" 
+                            formControlName="password" class="form-control" id="password">
+                        <div *ngIf="loginFormControls['password'].touched && loginFormControls['password'].errors" class="invalid-feedback">
+                            <div *ngIf="loginFormControls['password'].errors['required']">
+                                Required
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="column small-12 text-end">
@@ -32,14 +46,15 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary button" type="button" >Login</button>
+                        <button class="btn btn-primary button" type="button"
+                            [disabled]="!loginForm.valid" (click)="onLogin()">Login</button>
                     </div>
-                    </form>
                     <div class="row">
                         <div class="column small-12 text-center m-t-10">
-                            <a routerLink="sign-up" class="create-account" >Create Account</a>
+                            <a routerLink="sign-up" class="create-account">Create Account</a>
                         </div>
                     </div>
+                </form>
             </section>
         </div>
     </div>
