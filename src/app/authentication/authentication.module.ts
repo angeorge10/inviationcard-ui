@@ -8,6 +8,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthenticationApiService } from './apis/authentication-api.service';
 import { LoginService } from './login/services/login.service';
+import { SignUpService } from './sign-up/services/sign-up.service';
 
 
 @NgModule({
@@ -21,6 +22,10 @@ import { LoginService } from './login/services/login.service';
     AuthenticationRoutingModule,
     SharedModule
   ],
-  providers: [LoginService, AuthenticationApiService]
+  providers: [
+    LoginService, 
+    AuthenticationApiService,
+    SignUpService
+  ]
 })
 export class AuthenticationModule { }

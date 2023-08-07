@@ -36,7 +36,7 @@ export class AuthenticationApiService {
    *
    * @returns An observable
    */
-  signup(reqBody: any, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
+  signUp(reqBody: any, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
     const apiConfig = cloneDeep(AuthenticationApiConfig.signup);
     return this.httpApiService.httpPost(apiConfig, reqBody, paramsObj, advancedOptions);
   }
