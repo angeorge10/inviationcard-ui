@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { ILoginReqBody } from '../apis/interfaces/ilogin-api';
 
@@ -26,6 +26,8 @@ export class LoginComponent {
   }
 
   onLogin() {
-    this.loginService.login({...this.loginForm.value} as ILoginReqBody).subscribe(() => {});
+    this.loginService.login({...this.loginForm.value} as ILoginReqBody).subscribe((response) => {
+      console.log(response);
+    });
   }
 }
