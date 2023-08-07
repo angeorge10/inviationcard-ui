@@ -6,19 +6,21 @@ import { IApiParamsObj } from '../interfaces/iapi-params-obj';
 import { IApiAdvancedOptions } from '../interfaces/iapi-advanced-options';
 import { IApiHttpSettings } from '../interfaces/iapi-http-settings';
 import { HttpApiConstant } from '../constants/http-api-constant';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpApiService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, 
+    private utilityService: UtilityService) { }
 
   /**
-   * Setting the options and headers
+   * Setting the request headers
    * @returns - Http Headers
    */
-  public setHeadersOptions(advanceOptions: IApiAdvancedOptions): HttpHeaders {
+  public setHeaders(advanceOptions: IApiAdvancedOptions): HttpHeaders {
     const headers = advanceOptions.header ? advanceOptions.header : {};
     return new HttpHeaders(headers);
   }
@@ -35,7 +37,6 @@ export class HttpApiService {
     }
 
     options.params = new HttpParams();
-    //this.setSortFilter(paramObj);
 
     if (paramObj) {
       // tslint:disable-next-line: forin
@@ -47,23 +48,23 @@ export class HttpApiService {
   }
 
   /**
-   * Get base url
+   * Get url
    * @param apiConfig
    * @param advanceOptions
    */
-  public getBaseUrl(apiConfig?: IApiConfig, advanceOptions?: IApiAdvancedOptions): any {
-    let reqestBaseUrl = HttpApiConstant.BASE_URL
+  public getUrl(apiConfig: IApiConfig): any {
+    let baseUrlFromReq = HttpApiConstant.BASE_URL
       ? HttpApiConstant.BASE_URL
       : '';
 
-    // overriding the defaults
+    // overriding defaults
     if (
       apiConfig?.id &&
       HttpApiConstant.OVERIRIDES &&
       HttpApiConstant.OVERIRIDES[apiConfig.id]
     ) {
       if (HttpApiConstant.OVERIRIDES[apiConfig.id].baseUrl) {
-        reqestBaseUrl = HttpApiConstant.OVERIRIDES[apiConfig.id].baseUrl;
+        baseUrlFromReq = HttpApiConstant.OVERIRIDES[apiConfig.id].baseUrl;
       }
     } else if (
       apiConfig?.group &&
@@ -71,24 +72,26 @@ export class HttpApiService {
       HttpApiConstant.OVERIRIDES[apiConfig.group]
     ) {
       if (HttpApiConstant.OVERIRIDES[apiConfig.group].baseUrl) {
-        reqestBaseUrl =
+        baseUrlFromReq =
         HttpApiConstant.OVERIRIDES[apiConfig.group].baseUrl;
       }
     }
-    return reqestBaseUrl;
+    baseUrlFromReq = baseUrlFromReq + apiConfig.endpoint;
+    return baseUrlFromReq;
   }
 
   /**
-   * toggle loader
+   * toggle loader/spinner
+   *
    * @param advanceOptions
    * @param showLoader
    */
   private toggleLoader(advanceOptions: IApiAdvancedOptions, showLoader: boolean) {
     if (!advanceOptions || !advanceOptions.hideLoader) {
       if (showLoader) {
-        //TODO: Show loader
+        this.utilityService.showLoader();
       } else {
-        //TODO: Hide Loader
+        this.utilityService.hideLoader();
       }
     }
   }
@@ -99,15 +102,15 @@ export class HttpApiService {
    */
   private httpMethod(httpSetting: IApiHttpSettings) {
     const method = httpSetting.method;
-    const advanceOptions = httpSetting.advanceOptions
+    const advOptions = httpSetting.advanceOptions
       ? httpSetting.advanceOptions
       : {};
     const options = this.setParamsOptions(
       httpSetting.params,
-      advanceOptions.setParamsOptions
+      advOptions.setParamsOptions
     );
-    const baseUrl = this.getBaseUrl(httpSetting.apiConfig, advanceOptions);
-    const headers = this.setHeadersOptions(advanceOptions);
+    const url = this.getUrl(httpSetting.apiConfig);
+    const headers = this.setHeaders(advOptions);
     options.headers = headers;
 
     if (httpSetting.advanceOptions && httpSetting.advanceOptions.responseType) {
@@ -115,20 +118,20 @@ export class HttpApiService {
     }
     const http =
       method === 'get' || method === 'delete'
-        ? this.httpClient[method](baseUrl, options)
-        : this.httpClient[method](baseUrl, httpSetting.body, options);
+        ? this.httpClient[method](url, options)
+        : this.httpClient[method](url, httpSetting.body, options);
 
-    this.toggleLoader(advanceOptions, true);
+    this.toggleLoader(advOptions, true);
 
     return http.pipe(
       map((response: any) => {
         return response.body;
       }),
       catchError((err) => {
-        return throwError(() => this.handleError(err, advanceOptions.muteNotifyError));
+        return throwError(() => this.handleError(err, advOptions.muteNotifyError));
       }),
       finalize(() => {
-        this.toggleLoader(advanceOptions, false);
+        this.toggleLoader(advOptions, false);
       })
     );
   }
