@@ -72,7 +72,8 @@
               "browserTarget": "InvitationCard:build:production"
             },
             "development": {
-              "browserTarget": "InvitationCard:build:development"
+              "browserTarget": "InvitationCard:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
