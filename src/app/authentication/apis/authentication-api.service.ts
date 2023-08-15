@@ -6,6 +6,7 @@ import { AuthenticationApiConfig } from './authentication-api-config';
 import { cloneDeep } from 'lodash-es';
 import { IApiParamsObj } from 'src/app/core/interfaces/iapi-params-obj';
 import { Observable } from 'rxjs';
+import { ISignUpReqBody } from './interfaces/isign-up-api';
 
 @Injectable()
 export class AuthenticationApiService {
@@ -36,7 +37,7 @@ export class AuthenticationApiService {
    *
    * @returns An observable
    */
-  signUp(reqBody: any, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
+  signUp(reqBody: ISignUpReqBody, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
     const apiConfig = cloneDeep(AuthenticationApiConfig.signup);
     return this.httpApiService.httpPost(apiConfig, reqBody, paramsObj, advancedOptions);
   }
@@ -50,7 +51,7 @@ export class AuthenticationApiService {
    *
    * @returns An observable
    */
-  forgorPassword(reqBody: any, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
+  forgotPassword(reqBody: any, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
     const apiConfig = cloneDeep(AuthenticationApiConfig.forgotpassword);
     return this.httpApiService.httpPost(apiConfig, reqBody, paramsObj, advancedOptions);
   }

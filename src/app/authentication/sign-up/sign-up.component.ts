@@ -41,12 +41,11 @@ export class SignUpComponent {
     return this.signUpForm.get('state');
   }
 
-   /**
-    * Callback when state is changed
-    * @param e - event
-    */
-   changeCity(e: any) {
-    console.log(e.value)
+  /**
+   * Callback when state is changed
+   * @param e - event
+   */
+  changeState(e: any) {
     this.stateControl.setValue(e.target.value)
   }
 
@@ -56,6 +55,6 @@ export class SignUpComponent {
   onSignUp() {
     this.signUpService.signUp({ ...this.signUpForm.value } as ISignUpReqBody).subscribe((response) => {
       console.log(response);
-     });
+    });
   }
 }
