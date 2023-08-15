@@ -20,7 +20,7 @@ export class HttpApiService {
    * Setting the request headers
    * @returns - Http Headers
    */
-  public setHeaders(advanceOptions: IApiAdvancedOptions): HttpHeaders {
+  private setHeaders(advanceOptions: IApiAdvancedOptions): HttpHeaders {
     const headers = advanceOptions.header ? advanceOptions.header : {};
     return new HttpHeaders(headers);
   }
@@ -52,7 +52,7 @@ export class HttpApiService {
    * @param apiConfig
    * @param advanceOptions
    */
-  public getUrl(apiConfig: IApiConfig): any {
+  private getUrl(apiConfig: IApiConfig): any {
     let baseUrlFromReq = HttpApiConstant.BASE_URL
       ? HttpApiConstant.BASE_URL
       : '';
@@ -137,10 +137,10 @@ export class HttpApiService {
   }
 
   /**
-   * CRUD OP : HTTP GET
+   * Http Get api call
+   *
    * @param apiConfig
    * @param paramObj
-   * @param mapper
    * @param advanceOptions
    */
   public httpGet(
@@ -158,7 +158,8 @@ export class HttpApiService {
   }
 
   /**
-   * HTTP POST
+   * HTTP POST api call
+   *
    * @param apiConfig
    * @param body
    * @param paramObj
@@ -181,6 +182,7 @@ export class HttpApiService {
   }
 
   /**
+   * Http PUT api call
    *
    * @param apiConfig
    * @param body
@@ -204,6 +206,7 @@ export class HttpApiService {
   }
 
   /**
+   * HTTP PATCH api call
    *
    * @param apiConfig
    * @param body
@@ -227,6 +230,7 @@ export class HttpApiService {
   }
 
   /**
+   * HTTP DELETE api call
    *
    * @param apiConfig
    * @param paramObj
@@ -249,13 +253,14 @@ export class HttpApiService {
 
   /**
    * handle Errors
+   *
    * @param error
    * @param muteNotifyError
    *
    * @return Error details
    */
   private handleError(error: Response | any, muteNotifyError?: boolean) {
-    const errMsg = 'Something bad happened; please try again later.';
+    const errMsg = 'An error occurred; please try again later.';
     const errObject = this.getErrorObject(error);
     const response = {
       status: error.status,
