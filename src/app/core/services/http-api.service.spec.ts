@@ -7,6 +7,7 @@ import { UtilityService } from 'src/app/shared/services/utility.service';
 import { finalize, of } from 'rxjs';
 import { IApiConfig } from '../interfaces/iapi-config';
 import { IApiAdvancedOptions } from '../interfaces/iapi-advanced-options';
+import { AlertsService } from 'src/app/shared/components/alerts/services/alerts.service';
 
 describe('HttpApiService', () => {
   let service: HttpApiService;
@@ -42,11 +43,16 @@ describe('HttpApiService', () => {
     showLoader() {}
     hideLoader() {}
   }
+
+  class AlertServiceStub {
+    addAlert() {}
+  }
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         { provide: HttpClient, useClass: HttpClientStub }, 
-        { provide: UtilityService, useClass: UtilityServiceStub }
+        { provide: UtilityService, useClass: UtilityServiceStub },
+        { provide: AlertsService, useClass: AlertServiceStub}
       ]
     });
     service = TestBed.inject(HttpApiService);
