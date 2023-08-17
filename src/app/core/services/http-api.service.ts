@@ -7,6 +7,9 @@ import { IApiAdvancedOptions } from '../interfaces/iapi-advanced-options';
 import { IApiHttpSettings } from '../interfaces/iapi-http-settings';
 import { HttpApiConstant } from '../constants/http-api-constant';
 import { UtilityService } from 'src/app/shared/services/utility.service';
+import { AlertsService } from 'src/app/shared/components/alerts/services/alerts.service';
+import { IAlert } from 'src/app/shared/components/alerts/interfaces/ialert';
+import { AlertType } from 'src/app/shared/components/alerts/enums/alert-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,8 @@ import { UtilityService } from 'src/app/shared/services/utility.service';
 export class HttpApiService {
 
   constructor(private httpClient: HttpClient, 
-    private utilityService: UtilityService) { }
+    private utilityService: UtilityService,
+    private alertsService: AlertsService) { }
 
   /**
    * Setting the request headers
@@ -270,7 +274,7 @@ export class HttpApiService {
 
     if (!muteNotifyError) {
       //TODO: Show error alert messages
-      console.log(response.message);
+      this.alertsService.addAlert(AlertType.ERROR, response.message);
     }
     return response;
   }
