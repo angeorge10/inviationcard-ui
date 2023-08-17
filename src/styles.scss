@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* TODO: Move the component specific styles to component */
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 body {
     background-color: #d7d8d8 !important;
 }
@@ -67,4 +69,18 @@ app-root {
     label.required:after {
         content: '*';
     }
+}
+
+.icons {
+    font-size: 35px;
+    color: #e5e51b;
+}
+
+.form-label {
+    color: #969773;
+    font-weight: 500;
+}
+
+.form-input-style {
+    border-color: #b5a6a6 !important;
 }
