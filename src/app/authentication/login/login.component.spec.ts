@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { of } from 'rxjs';
 import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,6 +16,10 @@ describe('LoginComponent', () => {
     }
   }
 
+  class RouterStub {
+    navigate() {}
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],
@@ -21,6 +27,10 @@ describe('LoginComponent', () => {
         {
           provide: LoginService,
           useClass: LoginServiceStub
+        },
+        {
+          provide: Router,
+          useClass: RouterStub
         }
       ],
       declarations: [LoginComponent]
