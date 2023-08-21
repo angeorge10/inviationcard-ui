@@ -1,0 +1,47 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "release" ]
+jobs:
+  Docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set current date as tag in env variable
+        run: echo "BUILD_TAG=$(date +'%Y%m%dT%H%M%S%s')" >> $GITHUB_ENV
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: anupgeorge/invitationcard-image:${{ env.BUILD_TAG }}
+  TriggerWorkflow:
+    runs-on: ubuntu-latest
+    needs: ["Docker"]
+    steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - 
+        name: Test
+        run: |
+                  curl -X POST https://api.github.com/repos/angeorge10/invitationcard-infra/dispatches \
+                  -H 'Accept: application/vnd.github.everest-preview+json' \
+                  -u ${{ secrets.GIT_KEY }} \
+                  --data '{"event_type": "Trigger Workflow", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "tag": ${{ env.BUILD_TAG }} }}'
+      - uses: actions/checkout@v3

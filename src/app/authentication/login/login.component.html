@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div class="container">
+    <div class="login-panel justify-content-md-center row mt-5">
+        <div class="col-6">
+            <section class="logo">
+                Invitation Card Design
+            </section>
+            <section class="text-center">
+                <img class="animation-gif" alt="Gift Card Änimation" data-src="assets/inytes-animation.gif"
+                    src="assets/inytes-animation.gif">
+            </section>
+        </div>
+        <div class="col-6">
+            <section class="login">
+                <div class="page-headline">
+                    <h2>Login</h2>
+                </div>
+                <form [formGroup]="loginForm">
+                    <div class="mb-3">
+                        <label for="email" class="form-label required">Email</label>
+                        <input type="email" class="form-control form-input-style"
+                            [ngClass]="{ 'is-invalid': loginFormControls['email'].touched && loginFormControls['email'].errors }"
+                            id="email" formControlName="email" aria-describedby="emailHelp">
+                        <div *ngIf="loginFormControls['email'].touched && loginFormControls['email'].errors" class="invalid-feedback">
+                            <div *ngIf="loginFormControls['email'].errors['required']">
+                                Required
+                            </div>
+                            <div *ngIf="loginFormControls['email'].errors['email']">
+                                Provide an email address
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label required">Password</label>
+                        <input type="password" 
+                            [ngClass]="{ 'is-invalid': loginFormControls['password'].touched && loginFormControls['password'].errors }" 
+                            formControlName="password" class="form-control form-input-style" id="password">
+                        <div *ngIf="loginFormControls['password'].touched && loginFormControls['password'].errors" class="invalid-feedback">
+                            <div *ngIf="loginFormControls['password'].errors['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column small-12 text-end">
+                            <p><a routerLink="forgot-password" class="forgot-password">Forgot Password?</a></p>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary button" type="button"
+                            [disabled]="!loginForm.valid" (click)="onLogin()">Login</button>
+                    </div>
+                    <div class="row">
+                        <div class="column small-12 text-center m-t-10">
+                            <a routerLink="sign-up" class="create-account">Create Account</a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
