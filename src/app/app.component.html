@@ -1,5 +1,7 @@
 <section>
+    <app-header *ngIf="!isLoginRoute"></app-header>
     <app-alerts></app-alerts>
     <router-outlet></router-outlet>
+    <app-footer *ngIf="!isLoginRoute"></app-footer>
 </section>
 
