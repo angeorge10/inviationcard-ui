@@ -29,7 +29,7 @@ export class LoginComponent {
 
   onLogin() {
     this.loginService.login({...this.loginForm.value} as ILoginReqBody).subscribe((response) => {
-      void this.router.navigate(['/login/dashboard']);
+      void this.router.navigate(['/home']);
     });
   }
 }

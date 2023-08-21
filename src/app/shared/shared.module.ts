@@ -4,13 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     SpinnerComponent,
-    AlertsComponent
+    AlertsComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     AlertsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }
