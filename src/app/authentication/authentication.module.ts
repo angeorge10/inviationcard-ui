@@ -9,23 +9,13 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthenticationApiService } from './apis/authentication-api.service';
 import { LoginService } from './login/services/login.service';
 import { SignUpService } from './sign-up/services/sign-up.service';
-import { FooterComponent } from './dashboard/footer/footer.component';
-import { CreateInvatationComponent } from './dashboard/create-invatation/create-invatation.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavigationComponent } from './dashboard/navigation/navigation.component';
-import { ViewinvitationDetailsComponent } from './dashboard/viewinvitation-details/viewinvitation-details.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     ForgotPasswordComponent,
-    SignUpComponent,
-     DashboardComponent,
-    CreateInvatationComponent,
-    ViewinvitationDetailsComponent,
-    NavigationComponent,
-    FooterComponent
+    SignUpComponent
   ],
   imports: [
     CommonModule,
