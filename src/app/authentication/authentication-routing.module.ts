@@ -6,6 +6,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateInvatationComponent } from './dashboard/create-invatation/create-invatation.component';
 import { ViewinvitationDetailsComponent } from './dashboard/viewinvitation-details/viewinvitation-details.component';
+import { CreateFriendlistComponent } from './dashboard/create-friendlist/create-friendlist.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path :'dashboard/viewinvitation-details',
     component :ViewinvitationDetailsComponent
+  },
+  {
+    path :'dashboard/create-friendlist',
+    component : CreateFriendlistComponent
   }
 ];
 

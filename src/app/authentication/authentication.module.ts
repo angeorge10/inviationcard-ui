@@ -14,6 +14,7 @@ import { CreateInvatationComponent } from './dashboard/create-invatation/create-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './dashboard/navigation/navigation.component';
 import { ViewinvitationDetailsComponent } from './dashboard/viewinvitation-details/viewinvitation-details.component';
+import { CreateFriendlistComponent } from './dashboard/create-friendlist/create-friendlist.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ViewinvitationDetailsComponent } from './dashboard/viewinvitation-detai
     CreateInvatationComponent,
     ViewinvitationDetailsComponent,
     NavigationComponent,
-    FooterComponent
+    FooterComponent,
+    CreateFriendlistComponent
   ],
   imports: [
     CommonModule,

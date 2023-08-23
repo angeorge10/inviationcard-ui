@@ -27,15 +27,14 @@
         </div>
 
         <form>
-          <div class="card ">   
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">        
-              <div class="card-body">
-                
-                <div class="col-md-12">
+          <div class="card">   
+            <div id="collapseOne" class="collapse show p-5" aria-labelledby="headingOne" data-bs-parent="#accordionExample">        
+              <div class="row justify-content-between">
+                <div class="col-md-5 mb-3">
                     <label for="inputEmail4" class="form-label">Event Title</label>
                     <input type="event title" class="form-control form-input-style" id="eventtitle">
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-5 mb-3">
                     <label for="eventType" class="form-label">Event Type</label>
                     <select id="eventType" class="form-select form-input-style">
                       <option selected>Choose...</option>
@@ -48,58 +47,82 @@
                       <option>Wedding Anniversary</option>
                     </select>
                   </div>
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-5 mb-3">
                   <label for="datepicker" class="form-label">Event Date</label>
                     <div class="input-group date" id="datepicker">
                       <input type="date" class="form-control form-input-style" id="date"/>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5 mb-3">
                   <label for="timepicker" class="form-label">Event Time</label>
                     <div class="input-group date" id="timepicker">
                       <input type="time" class="form-control form-input-style" id="time"/>         
                     </div>
                 </div>
-                <div class="col-md-8">
-                  <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
-                  <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
-                </div>
-                <div class="col-12">
+                <div class="col-md-5 mb-3">
                   <label for="inputAddress" class="form-label">Location </label>
                   <input type="text" class="form-control form-input-style" id="inputAddress" placeholder="1234 Main St">
                 </div>            
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary">Create Invitation</button>
+                <div class="col-md-12 mb-3">
+                  <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
                 </div>
-
               </div>    
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">        
-              <div class="card-body">your content goes here...2 </div>    
-            </div>            
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample"> 
-              <div class="card-body"> your content goes here...3</div>    
+            <!-- Template selection strat-->
+            <div id="collapseTwo" class="collapse p-5" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">        
+              <div class="row">
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/chrismas.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/thanks_2.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/chrismas.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/thanks_2.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/chrismas.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/thanks_2.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/chrismas.png"/>
+                </div>
+                <div class="col-md-3 mb-5">
+                  <img class="img-fluid" src="/assets/thanks_2.png"/>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <button type="submit" class="btn btn-primary float-start"><i class="bi bi-arrow-left"></i> Back</button>
+                  <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
+                </div>                
+              </div>    
+            </div>
+            <!-- Template selection end-->           
+            <div id="collapseThree" class="collapse p-5" aria-labelledby="headingThree" data-bs-parent="#accordionExample"> 
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="bg-image" style="background-image: url('/assets/card_sample_1.jpg'); height: 100vh">
+                    <div >text</div>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3 mt-4">
+                  <button type="submit" class="btn btn-primary float-end">Create</button>
+                </div>                
+              </div>    
             </div>
           </div>
         </form>
-
-
-      
-    </div>
-
-
+      </div>
     </div>
   </div>
   <!-- Steprs End-->
-
-
-
 <script type="text/javascript">
 const stepButtons = document.querySelectorAll('.step-button');
 const progress = document.querySelector('#progress');
-
 Array.from(stepButtons).forEach((button,index) => {
     button.addEventListener('click', () => {
         progress.setAttribute('value', index * 100 /(stepButtons.length - 1) );//there are 3 buttons. 2 spaces.

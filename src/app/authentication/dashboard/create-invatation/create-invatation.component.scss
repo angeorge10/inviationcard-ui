@@ -1,4 +1,3 @@
-
 .steps {    
     display: flex;    
     justify-content: space-between;    
@@ -11,17 +10,17 @@
       height: 50px;    
       border-radius: 50%;    
       border: none;    
-      background-color:#1D3EDE;    
+      background-color:#b1b1b1;    
       transition: .4s;
     }
     .step-button[aria-expanded="true"] {    
       width: 60px;    
       height: 60px;   
-      background-color:#4aa51b;    
+      background-color:#0381ff;    
       color: #fff;
     }
     .done {    
-      background-color:#db494b;    
+      background-color:#0381ff;    
       color: #fff;
     }
     .step-item {    
@@ -37,22 +36,17 @@
       margin-left: 18px;    
       margin-bottom: 18px;}/* to customize progress bar */
       #progress::-webkit-progress-value {    
-        background-color:#EC5759;    
+        background-color:#0381ff;    
         transition: .5s ease;
       }
       #progress::-webkit-progress-bar {    
-          background-color:#f2a4ff;
+          background-color:#b1b1b1;
       }
-  
       .fade {
-       // @include transition($transition-fade);
-      
         &:not(.show) {
           opacity: 0;
         }
       }
-      
-      // scss-docs-start collapse-classes
       .card{
         .collapse {
           &:not(.show) {
@@ -60,19 +54,14 @@
           }
         }
       }
-      
       .collapsing {
         height: 0;
         overflow: hidden;
-      //  @include transition($transition-collapse);
-      
         &.collapse-horizontal {
           width: 0;
           height: auto;
-         // @include transition($transition-collapse-width);
         }
       }
-      // scss-docs-end collapse-classes
   
   
   
