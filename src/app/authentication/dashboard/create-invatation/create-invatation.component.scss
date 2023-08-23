@@ -1,0 +1,78 @@
+
+.steps {    
+    display: flex;    
+    justify-content: space-between;    
+    align-items: center;   
+     margin-bottom: 2rem;    
+     position: relative;
+    }
+    .step-button {    
+      width: 50px;   
+      height: 50px;    
+      border-radius: 50%;    
+      border: none;    
+      background-color:#1D3EDE;    
+      transition: .4s;
+    }
+    .step-button[aria-expanded="true"] {    
+      width: 60px;    
+      height: 60px;   
+      background-color:#4aa51b;    
+      color: #fff;
+    }
+    .done {    
+      background-color:#db494b;    
+      color: #fff;
+    }
+    .step-item {    
+      z-index: 10;    
+      text-align: center;
+    }
+    #progress {  
+      appearance:none;    
+      position: absolute;   
+      width: 95%;    
+      z-index: 5;    
+      height: 10px;    
+      margin-left: 18px;    
+      margin-bottom: 18px;}/* to customize progress bar */
+      #progress::-webkit-progress-value {    
+        background-color:#EC5759;    
+        transition: .5s ease;
+      }
+      #progress::-webkit-progress-bar {    
+          background-color:#f2a4ff;
+      }
+  
+      .fade {
+       // @include transition($transition-fade);
+      
+        &:not(.show) {
+          opacity: 0;
+        }
+      }
+      
+      // scss-docs-start collapse-classes
+      .card{
+        .collapse {
+          &:not(.show) {
+            display: none;
+          }
+        }
+      }
+      
+      .collapsing {
+        height: 0;
+        overflow: hidden;
+      //  @include transition($transition-collapse);
+      
+        &.collapse-horizontal {
+          width: 0;
+          height: auto;
+         // @include transition($transition-collapse-width);
+        }
+      }
+      // scss-docs-end collapse-classes
+  
+  
+  

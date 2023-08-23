@@ -1,56 +1,119 @@
   <app-navigation></app-navigation>
+
+
   <div class="container">
     <div class="row login-panel p-5">
-      <div class="col-md-6 col-lg-6">
-        <form class="row g-3">
-            <div class="col-md-12">
-                <label for="inputEmail4" class="form-label">Event Title</label>
-                <input type="event title" class="form-control form-input-style" id="eventtitle">
-              </div>
-              <div class="col-md-6">
-                <label for="eventType" class="form-label">Event Type</label>
-                <select id="eventType" class="form-select form-input-style">
-                  <option selected>Choose...</option>
-                  <option>Baby Shower</option>
-                  <option>Birthday</option>
-                  <option>Christmas</option>
-                  <option>Engagement</option>
-                  <option>Graduation</option>
-                  <option>Wedding</option>
-                  <option>Wedding Anniversary</option>
-                </select>
-              </div>
-            <div class="col-md-6">
-            </div>
-            <div class="col-md-6">
-              <label for="datepicker" class="form-label">Event Date</label>
-                <div class="input-group date" id="datepicker">
-                  <input type="date" class="form-control form-input-style" id="date"/>
+      <div class="accordion col-md-12 col-lg-12" id="accordionExample">
+        <div class="steps">    
+          <progress id="progress" value=0 max=100 ></progress>    
+          <div class="step-item">        
+            <button class="step-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              1        
+            </button>       
+            <div class="step-title">Content</div>    
+          </div>    
+          <div class="step-item">
+            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">            
+              2        
+            </button>        
+            <div class="step-title">Template selection</div>    
+          </div>    
+          <div class="step-item">        
+            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">            
+              3        
+            </button>        
+            <div class="step-title">Preview </div>    
+          </div>
+        </div>
+
+        <form>
+          <div class="card ">   
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">        
+              <div class="card-body">
+                
+                <div class="col-md-12">
+                    <label for="inputEmail4" class="form-label">Event Title</label>
+                    <input type="event title" class="form-control form-input-style" id="eventtitle">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="eventType" class="form-label">Event Type</label>
+                    <select id="eventType" class="form-select form-input-style">
+                      <option selected>Choose...</option>
+                      <option>Baby Shower</option>
+                      <option>Birthday</option>
+                      <option>Christmas</option>
+                      <option>Engagement</option>
+                      <option>Graduation</option>
+                      <option>Wedding</option>
+                      <option>Wedding Anniversary</option>
+                    </select>
+                  </div>
+                <div class="col-md-6">
                 </div>
-            </div>
-            <div class="col-md-6">
-              <label for="timepicker" class="form-label">Event Time</label>
-                <div class="input-group date" id="timepicker">
-                  <input type="time" class="form-control form-input-style" id="time"/>         
+                <div class="col-md-6">
+                  <label for="datepicker" class="form-label">Event Date</label>
+                    <div class="input-group date" id="datepicker">
+                      <input type="date" class="form-control form-input-style" id="date"/>
+                    </div>
                 </div>
+                <div class="col-md-6">
+                  <label for="timepicker" class="form-label">Event Time</label>
+                    <div class="input-group date" id="timepicker">
+                      <input type="time" class="form-control form-input-style" id="time"/>         
+                    </div>
+                </div>
+                <div class="col-md-8">
+                  <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
+                  <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Location </label>
+                  <input type="text" class="form-control form-input-style" id="inputAddress" placeholder="1234 Main St">
+                </div>            
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Create Invitation</button>
+                </div>
+
+              </div>    
             </div>
-            <div class="col-md-8">
-              <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
-              <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
-            </div>
-            <div class="col-12">
-              <label for="inputAddress" class="form-label">Location </label>
-              <input type="text" class="form-control form-input-style" id="inputAddress" placeholder="1234 Main St">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">        
+              <div class="card-body">your content goes here...2 </div>    
             </div>            
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Create Invitation</button>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample"> 
+              <div class="card-body"> your content goes here...3</div>    
             </div>
-          </form>
-      </div>
-      <div class="col-md-6">
-        preview
-        
-      </div>
+          </div>
+        </form>
+
+
+      
     </div>
- </div>
+
+
+    </div>
+  </div>
+  <!-- Steprs End-->
+
+
+
+<script type="text/javascript">
+const stepButtons = document.querySelectorAll('.step-button');
+const progress = document.querySelector('#progress');
+
+Array.from(stepButtons).forEach((button,index) => {
+    button.addEventListener('click', () => {
+        progress.setAttribute('value', index * 100 /(stepButtons.length - 1) );//there are 3 buttons. 2 spaces.
+
+        stepButtons.forEach((item, secindex)=>{
+            if(index > secindex){
+                item.classList.add('done');
+            }
+            if(index < secindex){
+                item.classList.remove('done');
+            }
+        })
+    })
+})
+</script>
+  
 <app-footer></app-footer>
