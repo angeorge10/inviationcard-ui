@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'cards',
     loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule)
+  },
+  {
+    path: 'friends',
+    loadChildren: () => import('./friends/friends.module').then(m => m.FriendsModule)
   }
 ];
 
