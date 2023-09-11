@@ -6,6 +6,7 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    RouterModule 
   ],
   exports: [
     FormsModule,
@@ -28,7 +30,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AlertsComponent,
     SpinnerComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RouterModule 
   ]
 })
 export class SharedModule { }
