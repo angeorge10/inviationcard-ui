@@ -1,49 +1,150 @@
 <div class="container">
     <div class="row login-panel p-5">
-      <h3 class="col-md-12 mb-4 mt-4 page-headline">Create Card</h3>
-      <div class="col-md-12 col-lg-12">
-        <form class="row g-3 justify-content-between">
-            <div class="col-md-5 mb-3">
-                <label for="inputEmail4" class="form-label">Event Title</label>
-                <input type="event title" class="form-control form-input-style" id="eventtitle">
+      <h3 class="col-md-12 mb-4 mt-4 page-headline">Create Card</h3>      
+      <div style="margin: 4px 15px">
+        <div class="container">
+          <div class="accordion" id="accordionExample">
+            <div class="steps">
+              <progress id="progressbar" value="0" max="100"></progress>
+              <div class="step-item">
+                <button class="step-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  1
+                </button>
+                <div class="step-title">Content </div>
+              </div>
+              <div class="step-item">
+                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  2
+                </button>
+                <div class="step-title">Template selection</div>
+              </div>
+              <div class="step-item">
+                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  3
+                </button>
+                <div class="step-title">Preview</div>
+              </div>
             </div>
-            <div class="col-md-5 mb-3">
-              <label for="eventType" class="form-label">Event Type</label>
-              <select id="eventType" class="form-select form-input-style">
-                <option selected>Choose...</option>
-                <option>Baby Shower</option>
-                <option>Birthday</option>
-                <option>Christmas</option>
-                <option>Engagement</option>
-                <option>Graduation</option>
-                <option>Wedding</option>
-                <option>Wedding Anniversary</option>
-              </select>
-            </div>
-            <div class="col-md-5 mb-3">
-              <label for="datepicker" class="form-label">Event Date</label>
-                <div class="input-group date" id="datepicker">
-                  <input type="date" class="form-control form-input-style" id="date"/>
+            <div class="">
+              <div id="headingOne"></div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="">
+                  <form class="row g-3 justify-content-between">
+                    <div class="col-md-5 mb-3">
+                        <label for="inputEmail4" class="form-label">Event Title</label>
+                        <input type="event title" class="form-control form-input-style" id="eventtitle">
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <label for="eventType" class="form-label">Event Type</label>
+                      <select id="eventType" class="form-select form-input-style">
+                        <option selected>Choose...</option>
+                        <option>Baby Shower</option>
+                        <option>Birthday</option>
+                        <option>Christmas</option>
+                        <option>Engagement</option>
+                        <option>Graduation</option>
+                        <option>Wedding</option>
+                        <option>Wedding Anniversary</option>
+                      </select>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <label for="datepicker" class="form-label">Event Date</label>
+                        <div class="input-group date" id="datepicker">
+                          <input type="date" class="form-control form-input-style" id="date"/>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <label for="timepicker" class="form-label">Event Time</label>
+                        <div class="input-group date" id="timepicker">
+                          <input type="time" class="form-control form-input-style" id="time"/>         
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
+                      <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <label for="inputAddress" class="form-label">Location </label>
+                      <input type="text" class="form-control form-input-style" id="inputAddress" placeholder="1234 Main St">
+                    </div>            
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary float-end">Create Invitation</button>
+                    </div>
+                  </form>
                 </div>
+              </div>
             </div>
-            <div class="col-md-5 mb-3">
-              <label for="timepicker" class="form-label">Event Time</label>
-                <div class="input-group date" id="timepicker">
-                  <input type="time" class="form-control form-input-style" id="time"/>         
+            <div class="">
+              <div id="headingTwo"></div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="">
+                  <form class="row">
+                    <div class="col-md-3 mb-3">
+                      <label for="eventType" class="form-label">Selcect template</label>
+                      <select id="eventType" class="form-select form-input-style">
+                        <option selected>Choose...</option>
+                        <option *ngFor="let template of templates" [value]="template.value"><img src='{{template.img}}'/> {{template.viewValue}}</option>
+                      </select>
+                    </div>                    
+                    <div class="col-md-9 mb-3">
+                      <div class="text-center">
+                        <img src="/assets/template_3.jpg" class="img-fluid " alt="Template"/>
+                      </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                      <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
+                    </div>
+                  </form>
+                </div>               
+              </div>
+            </div>
+            <div class="">
+            <div id="headingThree"> </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="">
+                  <div class="row justify-content-center">
+                    <div class="col-md-8 align-self-center">
+                      <div class="template-bg-selected">
+                         <div class="row justify-content-center">
+                          <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
+                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">birthday party</div>
+                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">Join us for a Dinner</div>
+                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : 09/21/2023</div> 
+                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : 07:45 PM</div>
+                            <div class="col-md-8 mt-5"></div>
+                            <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
+                              John Williams | 15th Cross, Mahadevpura | Bangalore Karnataka 
+                            </div>
+                         </div>
+                      </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                      <button type="submit" class="btn btn-primary float-end">Send</button>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="col-md-5 mb-3">
-              <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
-              <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
-            </div>
-            <div class="col-md-5 mb-3">
-              <label for="inputAddress" class="form-label">Location </label>
-              <input type="text" class="form-control form-input-style" id="inputAddress" placeholder="1234 Main St">
-            </div>            
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary float-end">Create Invitation</button>
-            </div>
-          </form>
+
+          </div>
+        </div>
       </div>
     </div>
  </div>
+<script type="text/javascript">
+   const stepButtons = document.querySelectorAll('.step-button');
+    const progressbar = document.querySelector('#progressbar');
+    Array.from(stepButtons).forEach((button,index) => {
+        button.addEventListener('click', () => {
+          progressbar.setAttribute('value', index * 100 /(stepButtons.length - 1) );//there are 3 buttons. 2 spaces.
+            stepButtons.forEach((item, secindex)=>{
+                if(index > secindex){
+                    item.classList.add('done');
+                }
+                if(index < secindex){
+                    item.classList.remove('done');
+                }
+            });
+        });
+    });
+</script>
