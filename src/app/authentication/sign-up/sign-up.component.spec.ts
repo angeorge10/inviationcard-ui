@@ -4,6 +4,8 @@ import { SignUpComponent } from './sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { SignUpService } from './services/sign-up.service';
+import { RouterTestingHarness, RouterTestingModule } from '@angular/router/testing';
+import { LoginComponent } from '../login/login.component';
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;
@@ -19,7 +21,12 @@ describe('SignUpComponent', () => {
   }
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule.withRoutes([
+        {
+          path: 'login',
+          component: LoginComponent
+        }
+      ])],
       declarations: [SignUpComponent],
       providers: [{
         provide: SignUpService,
@@ -33,17 +40,6 @@ describe('SignUpComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('changeState should update the value of state form field', () => {
-    spyOn(component.stateControl, 'setValue').and.callThrough();
-    const updatedState = 'State';
-    component.changeState({
-      target: {
-        value: updatedState
-      }
-    });
-    expect(component.stateControl.setValue).toHaveBeenCalledWith(updatedState);
   });
 
   it('onSignUp should call signUpService signUp', () => {
