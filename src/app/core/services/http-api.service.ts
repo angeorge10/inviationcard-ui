@@ -273,7 +273,6 @@ export class HttpApiService {
     };
 
     if (!muteNotifyError) {
-      //TODO: Show error alert messages
       this.alertsService.addAlert(AlertType.ERROR, response.message);
     }
     return response;

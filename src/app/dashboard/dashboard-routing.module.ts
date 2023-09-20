@@ -8,14 +8,6 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent
-  },
-  {
-    path :'add-friend',
-    component:AddFriendComponent
-  },
-  {
-    path:'view-friend',
-    component:ViewFriendComponent
   }
 
 ];

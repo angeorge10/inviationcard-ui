@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { SortableTableHeaderDirective } from './directives/sortable-table-header/sortable-table-header.directive';
 
 
 
@@ -15,14 +16,16 @@ import { RouterModule } from '@angular/router';
     SpinnerComponent,
     AlertsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SortableTableHeaderDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    RouterModule 
+    RouterModule,
+    NgbPaginationModule
   ],
   exports: [
     FormsModule,
@@ -31,7 +34,10 @@ import { RouterModule } from '@angular/router';
     SpinnerComponent,
     HeaderComponent,
     FooterComponent,
-    RouterModule 
+    RouterModule,
+    NgbPaginationModule,
+    NgbModule,
+    SortableTableHeaderDirective
   ]
 })
 export class SharedModule { }
