@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 export interface Template {
   value: string;
@@ -20,5 +21,10 @@ export class CreateCardComponent {
     { value: '4', viewValue: 'Template5', img: '/assets/template_5.jpg' },
     { value: '5', viewValue: 'Template6', img: '/assets/template_6.jpg' }
   ]; 
+  eventtitle: any;
+  eventdescription: any;
+  datepicker: any;
+  timepicker: any;
+  eventaddress: any;
 }
 
