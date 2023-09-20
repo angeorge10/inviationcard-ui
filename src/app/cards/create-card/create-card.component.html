@@ -80,7 +80,9 @@
                       <label for="eventType" class="form-label">Selcect template</label>
                       <select id="eventType" class="form-select form-input-style">
                         <option selected>Choose...</option>
-                        <option *ngFor="let template of templates" [value]="template.value"><img src='{{template.img}}'/> {{template.viewValue}}</option>
+                        <option *ngFor="let template of templates" [value]="template.value">
+                          <img src='{{template.img}}' alt="Template Image"/> {{template.viewValue}}
+                        </option>
                       </select>
                     </div>                    
                     <div class="col-md-9 mb-3">

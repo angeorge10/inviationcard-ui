@@ -1,17 +1,31 @@
 <div class="container">
   <div class="row login-panel p-5">
       <h3 class="col-md-12 mb-4 mt-4 page-headline">Create Friend List</h3>
-      <form class="row justify-content-between">
+      <form class="row justify-content-between" [formGroup]="friendForm">
           <div class="col-md-5 mb-3">
-            <label for="formGroupExampleInput" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Eenter full name">
+            <label for="name" class="form-label required">Full Name</label>
+            <input type="text" [ngClass]="{ 'is-invalid': friendFormControls['name'].touched && friendFormControls['name'].errors }"
+            formControlName="name" class="form-control form-input-style" id="name" placeholder="Eenter full name">
+            <div *ngIf="friendFormControls['name'].touched && friendFormControls['name'].errors"
+              class="invalid-feedback">
+              <div *ngIf="friendFormControls['name'].errors['required']">
+                Required
+              </div>
+            </div>
           </div>        
           <div class="col-md-5 mb-3">           
-              <label for="formGroupExampleInput" class="form-label">Friends Email Id</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Eenter email id">
+              <label for="email" class="form-label required">Friends Email Id</label>
+              <input type="text" [ngClass]="{ 'is-invalid': friendFormControls['email'].touched && friendFormControls['email'].errors }"
+              formControlName="email" class="form-control form-input-style" id="email" placeholder="Enter email id">
+              <div *ngIf="friendFormControls['email'].touched && friendFormControls['email'].errors"
+              class="invalid-feedback">
+              <div *ngIf="friendFormControls['email'].errors['required']">
+                Required
+              </div>
+            </div>
           </div>          
           <div class="col-md-12 mb-3 mt-5">
-              <button type="submit" class="btn btn-primary float-end">Create</button>
+              <button type="submit" [disabled]="!friendForm.valid" (click)="addFriendToUser()" class="btn btn-primary float-end">Add</button>
           </div>
       </form>
   </div>
