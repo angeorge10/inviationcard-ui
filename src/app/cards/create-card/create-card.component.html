@@ -129,18 +129,31 @@
               <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                 <div class="">
                   <div class="row justify-content-center">
-                    <div class="col-md-3 mb-3">
-                      <label for="eventType" class="form-label">Select friends</label>
-                      <select class="" multiple>
-                        <option value="cheese">Cheese</option>
-                        <option value="tomatoes">Tomatoes</option>
-                        <option value="mozarella">Mozzarella</option>
-                        <option value="mushrooms">Mushrooms</option>
-                        <option value="pepperoni">Pepperoni</option>
-                        <option value="onions">Onions</option>
-                    </select>
+                    <div class="col-md-4 mb-3">
+                      <div class="row">
+                        <div class="col-md-12 mb-5">
+                          <label for="selectfriends" class="form-label selectfriends">Select friends</label>
+                          <select id="selectfriends" name="selectfriends" class="form-control" [(ngModel)]="selectfriends" multiple>
+                            <option value="Friendname1">Friendname1</option>
+                            <option value="Friendname2">Friendname2</option>
+                            <option value="Friendname3">Friendname3</option>
+                            <option value="Friendname4">Friendname4</option>
+                            <option value="Friendname5">Friendname5</option>
+                            <option value="Friendname6">Friendname6</option>
+                            <option value="Friendname1">Friendname1</option>
+                            <option value="Friendname2">Friendname2</option>
+                            <option value="Friendname3">Friendname3</option>
+                            <option value="Friendname4">Friendname4</option>
+                            <option value="Friendname5">Friendname5</option>
+                            <option value="Friendname6">Friendname6</option>
+                          </select>
+                        </div>
+                        <div class="col-md-12 mt-5 text-break">
+                          {{selectfriends}}
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-md-9 align-self-center">
+                    <div class="col-md-8 align-self-center">
                       <div class="template-bg-selected">
                          <div class="row justify-content-center">
                           <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
