@@ -37,23 +37,23 @@
                 <div class="">
                   <form class="row g-3 justify-content-between">
                     <div class="col-md-5 mb-3">
-                        <label for="eventTitle" class="form-label">Event Title</label>
-                        <input type="event title" class="form-control form-input-style" id="eventtitle">
-                    </div>
+                        <label for="eventtitle" class="form-label">Event Title</label>
+                        <input type="event title" class="form-control form-input-style" name="eventtitle" [(ngModel)]="eventtitle" id="eventtitle">
+                    </div> 
                     <div class="col-md-5 mb-3">
-                      <label for="eventDescription" class="form-label">Event Description</label>
-                      <input type="event description" class="form-control form-input-style" id="event description">
+                      <label for="eventdescription" class="form-label">Event Description</label>
+                      <input type="event description" class="form-control form-input-style" name="eventdescription" [(ngModel)]="eventdescription" id="event description">
                     </div>
                     <div class="col-md-5 mb-3">
                       <label for="datepicker" class="form-label">Event Date</label>
                         <div class="input-group date" id="datepicker">
-                          <input type="date" class="form-control form-input-style" id="date"/>
+                          <input type="date" class="form-control form-input-style" name="datepicker" [(ngModel)]="datepicker" id="datepicker"/>
                         </div>
                     </div>
                     <div class="col-md-5 mb-3">
                       <label for="timepicker" class="form-label">Event Time</label>
                         <div class="input-group date" id="timepicker">
-                          <input type="time" class="form-control form-input-style" id="time"/>         
+                          <input type="time" class="form-control form-input-style" name="timepicker" [(ngModel)]="timepicker" id="timepicker"/>         
                         </div>
                     </div>
                     <div class="col-md-5 mb-3">
@@ -61,8 +61,8 @@
                       <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
                     </div>
                     <div class="col-md-5 mb-3">
-                      <label for="inputAddress" class="form-label">Location </label>
-                      <input type="text" class="form-control form-input-style" id="inputAddress" placeholder="1234 Main St">
+                      <label for="eventaddress" class="form-label">Location </label>
+                      <input type="text" class="form-control form-input-style" name="eventaddress" [(ngModel)]="eventaddress" id="eventaddress">
                     </div>            
                     <div class="col-12">
                       <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
@@ -106,13 +106,13 @@
                       <div class="template-bg-selected">
                          <div class="row justify-content-center">
                           <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
-                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">birthday party</div>
-                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">Join us for a Dinner</div>
-                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : 09/21/2023</div> 
-                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : 07:45 PM</div>
+                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">{{eventtitle}}</div>
+                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">{{eventdescription}}</div>
+                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : {{datepicker}}</div> 
+                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : {{timepicker}}</div>
                             <div class="col-md-8 mt-5"></div>
                             <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
-                              John Williams | 15th Cross, Mahadevpura | Bangalore Karnataka 
+                              {{eventaddress}}  
                             </div>
                          </div>
                       </div>
@@ -129,30 +129,41 @@
               <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                 <div class="">
                   <div class="row justify-content-center">
-                    <div class="col-md-3 mb-3">
-                      <label for="eventType" class="form-label">Select friends</label>
-                      <select id="eventType" class="form-select form-input-style">
-                        <option selected>Choose...</option>
-                        <option>Friend 1</option>
-                        <option>Friend 2</option>
-                        <option>Friend 3</option>
-                        <option>Friend 4</option>
-                        <option>Friend 5</option>
-                        <option>Friend 6</option>
-                        <option>Friend 7</option>
-                      </select>
+                    <div class="col-md-4 mb-3">
+                      <div class="row">
+                        <div class="col-md-12 mb-5">
+                          <label for="selectfriends" class="form-label selectfriends">Select friends</label>
+                          <select id="selectfriends" name="selectfriends" class="form-control" [(ngModel)]="selectfriends" multiple>
+                            <option value="Friendname1">Friendname1</option>
+                            <option value="Friendname2">Friendname2</option>
+                            <option value="Friendname3">Friendname3</option>
+                            <option value="Friendname4">Friendname4</option>
+                            <option value="Friendname5">Friendname5</option>
+                            <option value="Friendname6">Friendname6</option>
+                            <option value="Friendname1">Friendname1</option>
+                            <option value="Friendname2">Friendname2</option>
+                            <option value="Friendname3">Friendname3</option>
+                            <option value="Friendname4">Friendname4</option>
+                            <option value="Friendname5">Friendname5</option>
+                            <option value="Friendname6">Friendname6</option>
+                          </select>
+                        </div>
+                        <div class="col-md-12 mt-5 text-break">
+                          {{selectfriends}}
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-md-9 align-self-center">
+                    <div class="col-md-8 align-self-center">
                       <div class="template-bg-selected">
                          <div class="row justify-content-center">
                           <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
-                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">birthday party</div>
-                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">Join us for a Dinner</div>
-                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : 09/21/2023</div> 
-                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : 07:45 PM</div>
+                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">{{eventtitle}}</div>
+                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">{{eventdescription}}</div>
+                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : {{datepicker}}</div> 
+                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : {{timepicker}}</div>
                             <div class="col-md-8 mt-5"></div>
                             <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
-                              John Williams | 15th Cross, Mahadevpura | Bangalore Karnataka 
+                              {{eventaddress}} 
                             </div>
                          </div>
                       </div>
