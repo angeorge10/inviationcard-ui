@@ -15,12 +15,15 @@
           </div>        
           <div class="col-md-5 mb-3">           
               <label for="email" class="form-label required">Friends Email Id</label>
-              <input type="text" [ngClass]="{ 'is-invalid': friendFormControls['email'].touched && friendFormControls['email'].errors }"
+              <input type="email" [ngClass]="{ 'is-invalid': friendFormControls['email'].touched && friendFormControls['email'].errors }"
               formControlName="email" class="form-control form-input-style" id="email" placeholder="Enter email id">
               <div *ngIf="friendFormControls['email'].touched && friendFormControls['email'].errors"
               class="invalid-feedback">
               <div *ngIf="friendFormControls['email'].errors['required']">
                 Required
+              </div>
+              <div *ngIf="friendFormControls['email'].errors['email']">
+                Provide an email address
               </div>
             </div>
           </div>          
