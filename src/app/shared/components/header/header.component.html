@@ -6,7 +6,7 @@
           <a [routerLink]="['/home']" class="text-white text-decoration-none"><i class="bi bi-house-gear" title="Dashboard"></i> Home</a>
         </div>
         <div class="col-6 col-md-6 col-lg-6 p-3">
-          <div class="float-lg-end"><i class="bi bi-person"></i> Welcome User Name</div>
+          <div class="float-lg-end"><i class="bi bi-person"></i> Welcome {{userName}}</div>
         </div>
         <div class="col-2 col-md-2 col-lg-2 p-3">
           <div class="float-lg-end" role="button" (click)="logout()" (keyup.enter)="logout()" tabindex="1">

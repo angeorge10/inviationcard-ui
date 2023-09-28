@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthenticationApiService } from '../../apis/authentication-api.service';
-import { ILoginReqBody } from '../../apis/interfaces/ilogin-api';
+import { ILoginApi, ILoginReqBody } from '../../apis/interfaces/ilogin-api';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class LoginService {
    *
    * @returns - An observable
    */
-  login(reqBody: ILoginReqBody): Observable<any> {
+  login(reqBody: ILoginReqBody): Observable<ILoginApi> {
     return this.authenticationApiService.login(reqBody);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IApiAdvancedOptions } from 'src/app/core/interfaces/iapi-advanced-options';
 import { HttpApiService } from 'src/app/core/services/http-api.service';
-import { ILoginReqBody } from './interfaces/ilogin-api';
+import { ILoginApi, ILoginReqBody } from './interfaces/ilogin-api';
 import { AuthenticationApiConfig } from './authentication-api-config';
 import { cloneDeep } from 'lodash-es';
 import { IApiParamsObj } from 'src/app/core/interfaces/iapi-params-obj';
@@ -23,7 +23,7 @@ export class AuthenticationApiService {
    * 
    * @returns - An observable
    */
-  login(reqBody: ILoginReqBody, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<any> {
+  login(reqBody: ILoginReqBody, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<ILoginApi> {
     const apiConfig = cloneDeep(AuthenticationApiConfig.login);
     return this.httpApiService.httpPost(apiConfig, reqBody, paramsObj, advancedOptions);
   }
