@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddFriendService } from './services/add-friend.service';
 import { of } from 'rxjs';
 import { AlertsService } from 'src/app/shared/components/alerts/services/alerts.service';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ViewFriendComponent } from '../view-friend/view-friend.component';
 
 describe('AddFriendComponent', () => {
   let component: AddFriendComponent;
@@ -18,10 +21,24 @@ describe('AddFriendComponent', () => {
   class AlertServiceStub {
     addAlert() {}
   }
+  class  RouterStub{
+    navigate() {}
+  }
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AddFriendComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [
+        FormsModule, 
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes(
+          [
+            {
+              path: 'friends',
+              component: ViewFriendComponent
+            }
+          ]
+        )
+      ],
       providers: [
         {
           provide: AddFriendService,
@@ -30,7 +47,11 @@ describe('AddFriendComponent', () => {
         {
           provide: AlertsService,
           useClass: AlertServiceStub
-        }
+        },
+        {
+          provide: Router,
+          useCLass: RouterStub
+        },
       ]
     });
     fixture = TestBed.createComponent(AddFriendComponent);
@@ -40,5 +61,11 @@ describe('AddFriendComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should add friend', () => {
+    spyOn((component as any).addFriend, 'add').and.callThrough();
+    component.addFriendToUser();
+    expect((component as any).addFriend.add).toHaveBeenCalled();
   });
 });

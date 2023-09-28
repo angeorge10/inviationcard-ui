@@ -44,7 +44,7 @@ export class ViewFriendComponent implements OnInit {
 		// 1. sort
 		let friends = this.sort(data, this.sortObj.column, this.sortObj.direction);
 		// 2. filter
-		friends = friends.filter((country) => this.matches(country, this.searchTerm));
+		friends = friends.filter((friend) => this.matches(friend, this.searchTerm));
 		this.pagination.total = friends.length;
 		// 3. paginate
 		friends = friends.slice((this.pagination.page - 1) * this.pagination.pageSize, (this.pagination.page - 1) * this.pagination.pageSize + this.pagination.pageSize);

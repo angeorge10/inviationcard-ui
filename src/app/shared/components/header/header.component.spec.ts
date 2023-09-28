@@ -7,6 +7,7 @@ import { LogoutApiService } from '../../apis/logout/logout-api.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/authentication/login/login.component';
+import { UtilityService } from '../../services/utility.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -20,6 +21,17 @@ describe('HeaderComponent', () => {
   class RouterStub {
     navigate() {}
   }
+
+  class UtilityServiceStub {
+    getUserDetails() {
+      return {
+        email: 'a@gmail.com',
+        firstName: 'first',
+        lastName: 'last'
+      };
+    }
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
@@ -31,6 +43,10 @@ describe('HeaderComponent', () => {
         {
           provide: Router,
           useCLass: RouterStub
+        },
+        {
+          provide: UtilityService,
+          useClass: UtilityServiceStub
         }
       ],
       imports: [RouterTestingModule.withRoutes(
@@ -46,5 +62,11 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('logout should be called', () => {
+    spyOn((component as any).logoutApiService, 'logout').and.callThrough();
+    component.logout();
+    expect((component as any).logoutApiService.logout).toHaveBeenCalled();
   });
 });
