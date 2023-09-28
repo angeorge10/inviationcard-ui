@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewFriendComponent } from './view-friend.component';
-import { SortableTableHeaderDirective } from 'src/app/shared/directives/sortable-table-header/sortable-table-header.directive';
+import { SortEvent, SortableTableHeaderDirective } from 'src/app/shared/directives/sortable-table-header/sortable-table-header.directive';
 import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ViewFriendService } from './services/view-friend.service';
 import { of } from 'rxjs';
@@ -12,7 +12,16 @@ describe('ViewFriendComponent', () => {
   let fixture: ComponentFixture<ViewFriendComponent>;
   class ViewFriendServiceStub{
     getAll() {
-      return of([]);
+      return of([
+        {
+          name: "Friend1",
+          email: 'a@gmail.com'
+        },
+        {
+          name: "Friend2",
+          email: 'b@gmail.com'
+        }
+      ]);
     }
   }
   beforeEach(() => {
@@ -33,5 +42,20 @@ describe('ViewFriendComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should sort grid on email', () => {
+    component.onSort({
+      column: 'email',
+      direction: 'asc'
+    } as SortEvent)
+  });
+
+  it('should refresh list', () => {
+    spyOn((component as any).sortObj, 'direction').and.returnValue('');
+    spyOn((component as any).sortObj, 'column').and.returnValue('email');
+    spyOn(component as any, '_search').and.callThrough();
+    component.refreshFriends();
+    expect((component as any)._search).toHaveBeenCalled();
   });
 });
