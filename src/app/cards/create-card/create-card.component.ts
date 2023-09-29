@@ -27,5 +27,6 @@ export class CreateCardComponent {
   timepicker: any;
   eventaddress: any;
   selectfriends: any;
+  templateselect: any;
 }
 
