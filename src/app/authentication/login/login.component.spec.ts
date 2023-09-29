@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -20,6 +21,10 @@ describe('LoginComponent', () => {
     navigate() {}
   }
 
+  class UtilityServiceStub {
+    setUserDetails() {}
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],
@@ -31,6 +36,10 @@ describe('LoginComponent', () => {
         {
           provide: Router,
           useClass: RouterStub
+        },
+        {
+          provide: UtilityService,
+          useClass: UtilityServiceStub
         }
       ],
       declarations: [LoginComponent]

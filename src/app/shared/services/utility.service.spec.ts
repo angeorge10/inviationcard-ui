@@ -46,4 +46,16 @@ describe('UtilityService', () => {
     expect((service as any).spinnerModalRef).toBeDefined();
   });
 
+  it('setUser Details', () => {
+    service.setUserDetails({
+      email: 'a',
+      firstName: 'b',
+      lastName: 'c'
+    });
+    const userDetails = service.getUserDetails();
+    expect(userDetails.email).toBe('a');
+    expect(userDetails.firstName).toBe('b');
+    expect(userDetails.lastName).toBe('c');
+  });
+
 });
