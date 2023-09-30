@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { CreateCardService } from './services/create-card.service';
 import { ICardRequest } from '../apis/interfaces/icard-api';
 import { IFriendApi } from 'src/app/friends/apis/interfaces/ifriend-api';
+import { AlertsService } from 'src/app/shared/components/alerts/services/alerts.service';
+import { Router } from '@angular/router';
+import { AlertType } from 'src/app/shared/components/alerts/enums/alert-type.enum';
 
 export interface Template {
   value: string;
@@ -33,7 +36,9 @@ export class CreateCardComponent implements OnInit {
   readonly TOTAL_STEPS = 4;
 
   constructor(private fb: FormBuilder,
-    private createCardService: CreateCardService) {
+    private createCardService: CreateCardService,
+    private alertService: AlertsService,
+    private router: Router) {
     this.stepOneForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -70,7 +75,8 @@ export class CreateCardComponent implements OnInit {
       email: this.stepFourForm.value['friends']
     } as ICardRequest;
     this.createCardService.createCard(reqBody).subscribe(() => {
-      console.log('Card created');
+      this.alertService.addAlert(AlertType.SUCCESS, 'Card created successfully');
+      void this.router.navigate(['/cards']);
     });
   }
 
