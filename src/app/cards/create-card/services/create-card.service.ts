@@ -11,7 +11,7 @@ import { IFriendApi } from 'src/app/friends/apis/interfaces/ifriend-api';
 @Injectable()
 export class CreateCardService {
 
-  constructor(private cardsApiServive: CardsApiService,
+  constructor(private cardsApiService: CardsApiService,
     private friendsApiService: FriendsApiService) { }
 
   /**
@@ -24,7 +24,7 @@ export class CreateCardService {
    * @returns An observable
    */
   createCard(reqBody: ICardRequest, paramsObj?: IApiParamsObj, advancedOptions?: IApiAdvancedOptions): Observable<IMessageResponseApi> {
-    return this.cardsApiServive.add(reqBody, paramsObj, advancedOptions);
+    return this.cardsApiService.add(reqBody, paramsObj, advancedOptions);
   }
 
   /**
