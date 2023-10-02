@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateCardComponent } from './create-card.component';
@@ -18,7 +19,7 @@ describe('CreateCardComponent', () => {
     }
 
     getAllFriends() {
-      return of();
+      return of([]);
     }
   }
   class AlertServiceStub {
