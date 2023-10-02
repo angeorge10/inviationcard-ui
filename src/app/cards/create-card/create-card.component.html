@@ -1,177 +1,244 @@
 <div class="container">
-    <div class="row login-panel p-5">
-      <h3 class="col-md-12 mb-4 mt-4 page-headline">Create Card</h3>      
-      <div style="margin: 4px 15px">
-        <div class="container">
-          <div class="accordion" id="accordionExample">
-            <div class="steps">
-              <progress id="progressbar" value="0" max="100"></progress>
-              <div class="step-item">
-                <button class="step-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  1
-                </button>
-                <div class="step-title">Content </div>
-              </div>
-              <div class="step-item">
-                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  2
-                </button>
-                <div class="step-title">Template selection</div>
-              </div>
-              <div class="step-item">
-                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  3
-                </button>
-                <div class="step-title">Preview</div>
-              </div>
-              <div class="step-item">
-                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  4
-                </button>
-                <div class="step-title">Invitation</div>
-              </div>
+  <div class="row login-panel p-5">
+    <h3 class="col-md-12 mb-4 mt-4 page-headline">Create Card</h3>
+    <div style="margin: 4px 15px">
+      <div class="container">
+        <div class="accordion" id="accordionExample">
+          <div class="steps">
+            <progress id="progressbar" [value]="progressBarValue" max="100"></progress>
+            <div class="step-item">
+              <button class="step-button text-center" [ngClass]="{'done': currentStep > 1}" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                (click)="stepChange(1)">
+                1
+              </button>
+              <div class="step-title">Content </div>
             </div>
-            <div class="">
-              <div id="headingOne"></div>
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="">
-                  <form class="row g-3 justify-content-between">
-                    <div class="col-md-5 mb-3">
-                        <label for="eventtitle" class="form-label">Event Title</label>
-                        <input type="event title" class="form-control form-input-style" name="eventtitle" [(ngModel)]="eventtitle" id="eventtitle">
-                    </div> 
-                    <div class="col-md-5 mb-3">
-                      <label for="eventdescription" class="form-label">Event Description</label>
-                      <input type="event description" class="form-control form-input-style" name="eventdescription" [(ngModel)]="eventdescription" id="event description">
-                    </div>
-                    <div class="col-md-5 mb-3">
-                      <label for="datepicker" class="form-label">Event Date</label>
-                        <div class="input-group date" id="datepicker">
-                          <input type="date" class="form-control form-input-style" name="datepicker" [(ngModel)]="datepicker" id="datepicker"/>
-                        </div>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                      <label for="timepicker" class="form-label">Event Time</label>
-                        <div class="input-group date" id="timepicker">
-                          <input type="time" class="form-control form-input-style" name="timepicker" [(ngModel)]="timepicker" id="timepicker"/>         
-                        </div>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                      <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
-                      <input class="form-control form-control-sm form-input-style" id="formFileSm" type="file" />
-                    </div>
-                    <div class="col-md-5 mb-3">
-                      <label for="eventaddress" class="form-label">Location </label>
-                      <input type="text" class="form-control form-input-style" name="eventaddress" [(ngModel)]="eventaddress" id="eventaddress">
-                    </div>            
-                    <div class="col-12">
-                      <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+            <div class="step-item">
+              <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                [ngClass]="{'done': currentStep > 2}" data-bs-target="#collapseTwo" aria-expanded="false"
+                aria-controls="collapseTwo" [disabled]="!stepOneForm.valid" (click)="stepChange(2)">
+                2
+              </button>
+              <div class="step-title">Template selection</div>
             </div>
-            <div class="">
-              <div id="headingTwo"></div>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="">
-                  <form class="row">
-                    <div class="col-md-3 mb-3">
-                      <label for="templateselect" class="form-label">Selcect template</label>
-                      <select id="templateselect" class="form-select form-input-style"  name="templateselect" [(ngModel)]="templateselect">
-                        <option *ngFor="let template of templates" [value]="template.img">
-                           {{template.viewValue}}
-                        </option>
-                      </select>
-                    </div>                    
-                    <div class="col-md-9 mb-3">
-                      <div class="text-center">                  
-                        <img src="{{templateselect}}" class="img-fluid " alt="Template"/>
-                      </div>
-                    </div>
-                    <div class="col-12 mt-3">
-                      <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
-                    </div>
-                  </form>
-                </div>               
-              </div>
+            <div class="step-item">
+              <button class="step-button text-center collapsed" [ngClass]="{'done': currentStep > 3}"
+                [disabled]="!stepOneForm.valid || !stepTwoForm.valid" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                (click)="stepChange(3)">
+                3
+              </button>
+              <div class="step-title">Preview</div>
             </div>
-            <div class="">
-              <div id="headingThree"> </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="">
-                  <div class="row justify-content-center">
-                    <div class="col-md-8 align-self-center">
-                      <div class="template-bg-selected" [ngStyle]="{'background-image': 'url(' + templateselect + ')'}"  >
-                         <div class="row justify-content-center">
-                          <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
-                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">{{eventtitle}}</div>
-                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">{{eventdescription}}</div>
-                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : {{datepicker}}</div> 
-                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : {{timepicker}}</div>
-                            <div class="col-md-8 mt-5"></div>
-                            <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
-                              {{eventaddress}}  
-                            </div>
-                         </div>
-                      </div>
-                    </div>
-                    <div class="col-12 mt-3">
-                      <button type="submit" class="btn btn-primary float-end">Next <i class="bi bi-arrow-right"></i></button>
+            <div class="step-item">
+              <button class="step-button text-center collapsed" type="button"
+                [disabled]="!stepOneForm.valid || !stepTwoForm.valid" data-bs-toggle="collapse"
+                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
+                (click)="stepChange(4)">
+                4
+              </button>
+              <div class="step-title">Invitation</div>
+            </div>
+          </div>
+          <div class="">
+            <div id="headingOne"></div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="">
+                <form class="row g-3 justify-content-between" [formGroup]="stepOneForm">
+                  <div class="col-md-5 mb-3">
+                    <label for="title" class="form-label required">Event Title</label>
+                    <input type="text" class="form-control form-input-style"
+                      [ngClass]="{ 'is-invalid': stepOneForm.controls['title'].touched && stepOneForm.controls['title'].errors }"
+                      name="title" formControlName="title" id="title">
+                    <div *ngIf="stepOneForm.controls['title'].touched && stepOneForm.controls['title'].errors"
+                      class="invalid-feedback">
+                      Required
                     </div>
                   </div>
+                  <div class="col-md-5 mb-3">
+                    <label for="description" class="form-label required">Event Description</label>
+                    <input type="text" class="form-control form-input-style" name="description"
+                      [ngClass]="{ 'is-invalid': stepOneForm.controls['description'].touched && stepOneForm.controls['description'].errors }"
+                      formControlName="description" id="description" />
+                    <div
+                      *ngIf="stepOneForm.controls['description'].touched && stepOneForm.controls['description'].errors"
+                      class="invalid-feedback">
+                      Required
+                    </div>
+                  </div>
+                  <div class="col-md-5 mb-3">
+                    <label for="date" class="form-label">Event Date</label>
+                    <div class="input-group date" id="datepicker">
+                      <input type="date" class="form-control form-input-style" name="date"
+                        [ngClass]="{ 'is-invalid': stepOneForm.controls['date'].touched && stepOneForm.controls['date'].errors }"
+                        formControlName="date" id="date" />
+                      <div *ngIf="stepOneForm.controls['date'].touched && stepOneForm.controls['date'].errors"
+                        class="invalid-feedback">
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5 mb-3">
+                    <label for="time" class="form-label required">Event Time</label>
+                    <div class="input-group">
+                      <input type="time" class="form-control form-input-style"
+                        [ngClass]="{ 'is-invalid': stepOneForm.controls['time'].touched && stepOneForm.controls['time'].errors }"
+                        name="time" formControlName="time" id="time" />
+                      <div *ngIf="stepOneForm.controls['time'].touched && stepOneForm.controls['time'].errors"
+                        class="invalid-feedback">
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5 mb-3">
+                    <label for="formFileLg" class="form-label">Media file upload Image/Video</label>
+                    <input class="form-control form-control-sm form-input-style" disabled id="formFileLg" type="file" />
+                  </div>
+                  <div class="col-md-5 mb-3">
+                    <label for="location" class="form-label required">Location </label>
+                    <input type="text" class="form-control form-input-style" name="location"
+                      [ngClass]="{ 'is-invalid': stepOneForm.controls['location'].touched && stepOneForm.controls['location'].errors }"
+                      formControlName="location" id="location" />
+                    <div *ngIf="stepOneForm.controls['location'].touched && stepOneForm.controls['location'].errors"
+                      class="invalid-feedback">
+                      Required
+                    </div>
+                  </div>
+                  <!-- <div class="col-12">
+                    <button type="submit" class="btn btn-primary float-end" [disabled]="!stepOneForm.valid"
+                      (click)="stepChange(2)">Next <i class="bi bi-arrow-right"></i></button>
+                  </div> -->
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <div id="headingTwo"></div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="">
+                <form class="row" [formGroup]="stepTwoForm">
+                  <div class="col-md-3 mb-3">
+                    <label for="template" class="form-label required">Selcect template</label>
+                    <select id="template" class="form-select form-input-style"
+                      [ngClass]="{ 'is-invalid': stepTwoForm.controls['template'].touched && stepTwoForm.controls['template'].errors }"
+                      name="template" formControlName="template">
+                      <option *ngFor="let template of templates" [value]="template.img">
+                        {{template.viewValue}}
+                      </option>
+                    </select>
+                    <div *ngIf="stepTwoForm.controls['template'].touched && stepTwoForm.controls['template'].errors"
+                      class="invalid-feedback">
+                      Required
+                    </div>
+                  </div>
+                  <div class="col-md-9 mb-3">
+                    <div class="text-center" *ngIf="stepTwoForm?.value['template']">
+                      <img src="{{stepTwoForm.value['template']}}" class="img-fluid " alt="Template" />
+                    </div>
+                  </div>
+                  <!-- <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary float-end" [disabled]="!stepTwoForm.valid"
+                      (click)="stepChange(3)">Next <i class="bi bi-arrow-right"></i></button>
+                  </div> -->
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <div id="headingThree"> </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="">
+                <div class="row justify-content-center">
+                  <div class="col-md-8 align-self-center">
+                    <div class="template-bg-selected"
+                      [ngStyle]="{'background-image': 'url(' + stepTwoForm.value['template'] + ')'}">
+                      <div class="row justify-content-center">
+                        <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
+                        <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">
+                          {{stepOneForm?.value['title']}}</div>
+                        <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">
+                          {{stepOneForm?.value['description']}}</div>
+                        <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on :
+                          {{stepOneForm?.value['date']}}</div>
+                        <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at :
+                          {{stepOneForm?.value['time']}}</div>
+                        <div class="col-md-8 mt-5"></div>
+                        <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
+                          {{stepOneForm?.value['location']}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary float-end" (click)="stepChange(4)">Next <i
+                        class="bi bi-arrow-right"></i></button>
+                  </div>
+                </div> -->
                 </div>
               </div>
             </div>
             <div class="">
               <div id="headingFour"> </div>
               <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                <div class="">
+                <form [formGroup]="stepFourForm">
                   <div class="row justify-content-center">
                     <div class="col-md-4 mb-3">
                       <div class="row">
                         <div class="col-md-12 mb-5">
-                          <label for="selectfriends" class="form-label selectfriends">Select friends</label>
-                          <select id="selectfriends" name="selectfriends" class="form-control" [(ngModel)]="selectfriends" multiple>
-                            <option value="Friendname1">Friendname1</option>
-                            <option value="Friendname2">Friendname2</option>
-                            <option value="Friendname3">Friendname3</option>
-                            <option value="Friendname4">Friendname4</option>
-                            <option value="Friendname5">Friendname5</option>
-                            <option value="Friendname6">Friendname6</option>
-                            <option value="Friendname1">Friendname1</option>
-                            <option value="Friendname2">Friendname2</option>
-                            <option value="Friendname3">Friendname3</option>
-                            <option value="Friendname4">Friendname4</option>
-                            <option value="Friendname5">Friendname5</option>
-                            <option value="Friendname6">Friendname6</option>
+                          <label for="friends" class="form-label required">Select friends</label>
+                          <select id="friends" name="friends" class="form-control"
+                            [ngClass]="{ 'is-invalid': stepFourForm.controls['friends'].touched && stepFourForm.controls['friends'].errors }"
+                            formControlName="friends" multiple>
+                            <option *ngFor="let friend of friendList" [value]="friend.email">{{ friend.name }}</option>
                           </select>
+                          <div
+                            *ngIf="stepFourForm.controls['friends'].touched && stepFourForm.controls['friends'].errors"
+                            class="invalid-feedback">
+                            Required
+                          </div>
                         </div>
-                        <div class="col-md-12 mt-5 text-break">
-                          {{selectfriends}}
+                      </div>
+                      <div class="row">
+                        <div class="col-12"
+                          *ngIf="stepFourForm.value['friends'] && stepFourForm.value['friends'].length">
+                          Selected Friend's Email
+                          <div>
+                            <ul>
+                              <li *ngFor=" let friend of stepFourForm.value['friends']">
+                                {{ friend }}
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-8 align-self-center">
-                      <div class="template-bg-selected" [ngStyle]="{'background-image': 'url(' + templateselect + ')'}">
-                         <div class="row justify-content-center">
+                      <div class="template-bg-selected"
+                        [ngStyle]="{'background-image': 'url(' + stepTwoForm?.value['template'] + ')'}">
+                        <div class="row justify-content-center">
                           <div class="col-md-9 text-center event-title-text fs-1 mt-5 mb-5"></div>
-                            <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">{{eventtitle}}</div>
-                            <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">{{eventdescription}}</div>
-                            <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on : {{datepicker}}</div> 
-                            <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at : {{timepicker}}</div>
-                            <div class="col-md-8 mt-5"></div>
-                            <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
-                              {{eventaddress}} 
-                            </div>
-                         </div>
+                          <div class="col-md-9 text-center event-title-text mt-5 mb-5 text-uppercase">
+                            {{stepOneForm?.value['title']}}</div>
+                          <div class="col-md-9 text-center event-type-text fs-2 mt-5 mb-5 text-uppercase">
+                            {{stepOneForm?.value['description']}}</div>
+                          <div class="col-md-4 event-date-time fs-4 mt-5 mb-5 text-end">on :
+                            {{stepOneForm?.value['date']}}</div>
+                          <div class="col-md-3 event-date-time fs-4 mt-5 mb-5 text-start">at :
+                            {{stepOneForm?.value['time']}}</div>
+                          <div class="col-md-8 mt-5"></div>
+                          <div class="col-md-9 text-center event-location-text fs-3 mt-5  mb-5">
+                            {{stepOneForm?.value['location']}}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="col-12 mt-3">
-                      <button type="submit" class="btn btn-primary float-end">Send Invitation</button>
+                      <button type="submit" [disabled]="!stepFourForm.valid" class="btn btn-primary float-end"
+                        (click)="sendInvitation()">Send Invitation</button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
 
@@ -179,21 +246,21 @@
         </div>
       </div>
     </div>
- </div>
-<script type="text/javascript">
-   const stepButtons = document.querySelectorAll('.step-button');
-    const progressbar = document.querySelector('#progressbar');
-    Array.from(stepButtons).forEach((button,index) => {
-        button.addEventListener('click', () => {
-          progressbar.setAttribute('value', index * 100 /(stepButtons.length - 1) );//there are 3 buttons. 2 spaces.
-            stepButtons.forEach((item, secindex)=>{
-                if(index > secindex){
-                    item.classList.add('done');
-                }
-                if(index < secindex){
-                    item.classList.remove('done');
-                }
-            });
-        });
+  </div>
+  <!-- <script type="text/javascript">
+  const stepButtons = document.querySelectorAll('.step-button');
+  const progressbar = document.querySelector('#progressbar');
+  Array.from(stepButtons).forEach((button, index) => {
+    button.addEventListener('click', () => {
+      progressbar.setAttribute('value', index * 100 / (stepButtons.length - 1));//there are 3 buttons. 2 spaces.
+      stepButtons.forEach((item, secindex) => {
+        if (index > secindex) {
+          item.classList.add('done');
+        }
+        if (index < secindex) {
+          item.classList.remove('done');
+        }
+      });
     });
-</script>
+  });
+</script> -->

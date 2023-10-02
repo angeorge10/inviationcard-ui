@@ -1,45 +1,56 @@
 <div class="container">
-    <div class="row login-panel p-5">
-      <h3 class="col-md-12 mb-4 mt-4 page-headline">View Card</h3>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="assets/thanks_2.png" alt="text" height="140px">
-          <div class="caption">
-            <h3>Invitation Name</h3>
-            <p class="card-description"><strong>Date</strong>17/08/2023</p>
-            <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
+  <div class="row login-panel p-5">
+    <h3 class="col-md-12 mb-4 mt-4 page-headline">View Created Cards</h3>
+    <div class="col-md-12 mb-4 mt-4">
+      <form>
+        <div class="mb-3 row">
+          <label for="table-search" class="col-xs-3 col-sm-auto col-form-label">Search:</label>
+          <div class="col-xs-3 col-sm-auto">
+            <input id="table-search" type="text" class="form-control" name="searchText" [(ngModel)]="searchTerm"
+              (ngModelChange)="refreshCards()" />
           </div>
         </div>
-      </div>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="assets/thanks_2.png" alt="text" height="140px">
-          <div class="caption">
-            <h3>Invitation Name</h3>
-            <p class="card-description"><strong>Date</strong>17/08/2023</p>
-            <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
-          </div>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" sortable="name" (sort)="onSort($event)">Title</th>
+              <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+              <th scope="col" sortable="date" (sort)="onSort($event)">Time</th>
+              <th scope="col" sortable="date" (sort)="onSort($event)">Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let card of cardsList">
+              <td>
+                <ngb-highlight [result]="card.title" [term]="searchTerm"></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight [result]="card.date" [term]="searchTerm"></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight [result]="card.time" [term]="searchTerm"></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight [result]="card.location" [term]="searchTerm"></ngb-highlight>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="pagination.total" [(page)]="pagination.page"
+            [pageSize]="pagination.pageSize" (pageChange)="refreshCards()">
+          </ngb-pagination>
+
+          <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="pagination.pageSize"
+            (ngModelChange)="refreshCards()">
+            <option [ngValue]="10">10 items per page</option>
+            <option [ngValue]="25">25 items per page</option>
+            <option [ngValue]="50">50 items per page</option>
+          </select>
         </div>
-      </div>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="assets/thanks_2.png" alt="text" height="140px">
-          <div class="caption">
-            <h3>Invitation Name</h3>
-            <p class="card-description"><strong>Date</strong>17/08/2023</p>
-            <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="assets/thanks_2.png" alt="text" height="140px">
-          <div class="caption">
-            <h3>Invitation Name</h3>
-            <p class="card-description"><strong>Date</strong>17/08/2023</p>
-            <p><a href="#" class="btn btn-primary" role="button">View details</a></p>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
- </div>
+  </div>
+</div>
